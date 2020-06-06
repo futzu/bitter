@@ -6,12 +6,13 @@ import (
 	"math/big"
 )
 
+// Bitn conversts bytes to a list of bits, litterally.  
 type Bitn struct {
 	idx  uint
 	bits string
 }
 
-// load raw bytes and convert to bits
+// Load raw bytes and convert to bits
 func (b *Bitn) Load(bites []byte) {
 	i := new(big.Int)
 	i.SetBytes(bites)
@@ -19,7 +20,7 @@ func (b *Bitn) Load(bites []byte) {
 	b.idx = 0
 }
 
-// slices bitcount of bits and returns it as a uint64
+// Chunk slices bitcount of bits and returns it as a uint64
 func (b *Bitn) Chunk(bitcount uint) uint64 {
 	j := new(big.Int)
 	d := b.idx + bitcount
@@ -29,14 +30,14 @@ func (b *Bitn) Chunk(bitcount uint) uint64 {
 	return j.Uint64()
 }
 
-// wrapper for Chunk
+// AsInt is a wrapper for Chunk
 func (b *Bitn) AsInt(bitcount uint) uint64 {
 	asint := b.Chunk(bitcount)
 	fmt.Println(asint)
 	return asint
 }
 
-// slices 1 bit and returns true for 1 , false for 0
+//  AsBool slices 1 bit and returns true for 1 , false for 0
 func (b *Bitn) AsBool() bool {
 	var bitcount uint
 	bitcount = 1
@@ -45,14 +46,14 @@ func (b *Bitn) AsBool() bool {
 	return boo
 }
 
-// slices bitcount of bits and returns as float64
+// AsFloatslices bitcount of bits and returns as float64
 func (b *Bitn) AsFloat(bitcount uint) float64 {
 	asfloat := float64(b.Chunk(bitcount))
 	fmt.Printf("%.6f\n", asfloat)
 	return asfloat
 }
 
-// slices bitcount of bits and returns as hex string
+// AsHex slices bitcount of bits and returns as hex string
 func (b *Bitn) AsHex(bitcount uint) string {
 	ashex := fmt.Sprintf("%#x", b.Chunk(bitcount))
 	fmt.Println(ashex)

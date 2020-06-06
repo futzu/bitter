@@ -1,4 +1,5 @@
 # gobit
+[![Go Report Card](https://goreportcard.com/badge/github.com/futzu/gobiT)](https://goreportcard.com/report/github.com/futzu/gobiT)
 Bitslicer for bytes 
 
 package gobit // import "github.com/futzu/gobit"

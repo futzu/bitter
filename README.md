@@ -1,0 +1,2 @@
+# gobit
+Bitslicer for bytes 

@@ -37,7 +37,7 @@ func (b *Bitn) AsInt(bitcount uint) uint64 {
 	return asint
 }
 
-//  AsBool slices 1 bit and returns true for 1 , false for 0
+// AsBool slices 1 bit and returns true for 1 , false for 0
 func (b *Bitn) AsBool() bool {
 	var bitcount uint
 	bitcount = 1
@@ -46,7 +46,7 @@ func (b *Bitn) AsBool() bool {
 	return boo
 }
 
-// AsFloatslices bitcount of bits and returns as float64
+// AsFloat slices bitcount of bits and returns as float64
 func (b *Bitn) AsFloat(bitcount uint) float64 {
 	asfloat := float64(b.Chunk(bitcount))
 	fmt.Printf("%.6f\n", asfloat)

@@ -1,3 +1,4 @@
+
 package gobit
 
 import (
@@ -43,12 +44,14 @@ func (b *Bitn) AsBool() bool {
 	fmt.Println(boo)
 	return boo
 }
+
 // slices bitcount of bits and returns as float64
 func (b *Bitn) AsFloat(bitcount uint) float64 {
 	asfloat := float64(b.Chunk(bitcount))
 	fmt.Printf("%.6f\n", asfloat)
 	return asfloat
 }
+
 // slices bitcount of bits and returns as hex string
 func (b *Bitn) AsHex(bitcount uint) string {
 	ashex := fmt.Sprintf("%#x", b.Chunk(bitcount))

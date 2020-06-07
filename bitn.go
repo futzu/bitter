@@ -56,6 +56,6 @@ func (b *Bitn) AsHex(bitcount uint) string {
 }
 
 // Forward advances b.idx by bitcount
-func (b *Bitn) Forward(bitcount uint){ 
+func (b *Bitn) Forward(bitcount uint) {
 	b.idx += bitcount
 }

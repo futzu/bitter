@@ -25,14 +25,14 @@ func (b *Bitn) Chunk(bitcount uint) uint64 {
 	d := b.idx + bitcount
 	j.SetString(b.bits[b.idx:d], 2)
 	b.idx = d
-	fmt.Printf("bitidx: %v\n", b.idx)
+	//fmt.Printf("bitidx: %v\n", b.idx)
 	return j.Uint64()
 }
 
 // AsInt is a wrapper for Chunk
 func (b *Bitn) AsInt(bitcount uint) uint64 {
 	asint := b.Chunk(bitcount)
-	fmt.Println(asint)
+	//fmt.Println(asint)
 	return asint
 }
 
@@ -41,20 +41,20 @@ func (b *Bitn) AsBool() bool {
 	var bitcount uint
 	bitcount = 1
 	boo := (b.Chunk(bitcount) == 1)
-	fmt.Println(boo)
+	//fmt.Println(boo)
 	return boo
 }
 
 // AsFloat slices bitcount of bits and returns as float64
 func (b *Bitn) AsFloat(bitcount uint) float64 {
 	asfloat := float64(b.Chunk(bitcount))
-	fmt.Printf("%.6f\n", asfloat)
+	//fmt.Printf("%.6f\n", asfloat)
 	return asfloat
 }
 
 // AsHex slices bitcount of bits and returns as hex string
 func (b *Bitn) AsHex(bitcount uint) string {
 	ashex := fmt.Sprintf("%#x", b.Chunk(bitcount))
-	fmt.Println(ashex)
+	//fmt.Println(ashex)
 	return ashex
 }

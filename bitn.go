@@ -1,11 +1,13 @@
 package gobit
 
 import (
+	"encoding/hex"
 	"fmt"
+	"log"
 	"math/big"
 )
 
-// Bitn converts bytes to a list of bits.
+// Bitn conversts bytes to a list of bits.
 type Bitn struct {
 	idx  uint
 	bits string
@@ -59,6 +61,16 @@ func (b *Bitn) As90k(bitcount uint) float64 {
 func (b *Bitn) AsHex(bitcount uint) string {
 	ashex := fmt.Sprintf("%#x", b.Chunk(bitcount))
 	return ashex
+}
+
+// AsDeHex slices bitcount of bits and returns as hex string
+func (b *Bitn) AsDeHex(bitcount uint) []byte {
+	ashex := fmt.Sprintf("%x", b.Chunk(bitcount))
+	asdehex, err := hex.DecodeString(ashex)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return asdehex
 }
 
 // Forward advances b.idx by bitcount

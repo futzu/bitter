@@ -25,7 +25,7 @@ func (b *Bitn) Chunk(bitcount uint) uint64 {
 	d := b.idx + bitcount
 	j.SetString(b.bits[b.idx:d], 2)
 	b.idx = d
-	fmt.Printf("bitidx: %v\n", b.idx)
+	//fmt.Printf("bitidx: %v\n", b.idx)
 	return j.Uint64()
 }
 

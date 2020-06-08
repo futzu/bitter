@@ -7,7 +7,7 @@ import (
 	"math/big"
 )
 
-// Bitn conversts bytes to a list of bits.
+// Bitn converts bytes to a list of bits.
 type Bitn struct {
 	idx  uint
 	bits string

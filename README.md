@@ -11,7 +11,7 @@ type Bitn struct {
         idx  uint
         bits string
 }
-    Bitn conversts bytes to a list of bits.
+    Bitn converts bytes to a list of bits.
 
 func (b *Bitn) As90k(bitcount uint) float64
     As90k is AsFloat / 90000.00

@@ -25,7 +25,7 @@ func (b *Bitn) Chunk(bitcount uint) uint64 {
 	d := b.idx + bitcount
 	j.SetString(b.bits[b.idx:d], 2)
 	b.idx = d
-	//fmt.Printf("bitidx: %v\n", b.idx)
+	fmt.Printf("bitidx: %v\n", b.idx)
 	return j.Uint64()
 }
 
@@ -51,9 +51,10 @@ func (b *Bitn) AsFloat(bitcount uint) float64 {
 
 // As90k is AsFloat / 90000.00
 func (b *Bitn) As90k(bitcount uint) float64 {
-	asfloat := float64(b.Chunk(bitcount))
-	return asfloat / 90000.00
+	as90k := b.AsFloat(bitcount) / 90000.00
+	return as90k
 }
+
 // AsHex slices bitcount of bits and returns as hex string
 func (b *Bitn) AsHex(bitcount uint) string {
 	ashex := fmt.Sprintf("%#x", b.Chunk(bitcount))

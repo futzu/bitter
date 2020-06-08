@@ -49,6 +49,11 @@ func (b *Bitn) AsFloat(bitcount uint) float64 {
 	return asfloat
 }
 
+// As90k is AsFloat / 90000.00
+func (b *Bitn) As90k(bitcount uint) float64 {
+	asfloat := float64(b.Chunk(bitcount))
+	return asfloat / 90000.00
+}
 // AsHex slices bitcount of bits and returns as hex string
 func (b *Bitn) AsHex(bitcount uint) string {
 	ashex := fmt.Sprintf("%#x", b.Chunk(bitcount))

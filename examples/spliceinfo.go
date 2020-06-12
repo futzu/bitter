@@ -5,41 +5,38 @@ import "github.com/futzu/gobit"
 
 // SpInfo is the splice info section of the SCTE 35 cue.
 type SpInfo struct {
+	Name                   string
 	TableId                string
 	SectionSyntaxIndicator bool
 	Private                bool
 	Reserved               string
-	SectionLength          uint64
-	ProtocolVersion        uint64
+	SectionLength          uint16
+	ProtocolVersion        uint8
 	EncryptedPacket        bool
-	EncryptionAlgorithm    uint64
+	EncryptionAlgorithm    uint8
 	PtsAdjustment          float64
 	CwIndex                string
 	Tier                   string
-	SpliceCommandLength    uint64
-	SpliceCommandType      uint64
+	SpliceCommandLength    uint16
+	SpliceCommandType      uint8
 }
 
 // Decode extracts bits for the splice info section values
 func (spi *SpInfo) Decode(bitn *gobit.Bitn) {
-	// gobit is always Big endian
-	// bitslice 8 bits and return the hex value
+	spi.Name = "Splice Info Section"
 	spi.TableId = bitn.AsHex(8)
-	// bit slice off 1 bit and return a bool
 	spi.SectionSyntaxIndicator = bitn.AsBool()
 	spi.Private = bitn.AsBool()
 	spi.Reserved = bitn.AsHex(2)
-	// bitslice off 12 bits and return the value as a uint64
-	spi.SectionLength = bitn.AsInt(12)
-	spi.ProtocolVersion = bitn.AsInt(8)
+	spi.SectionLength = bitn.AsUInt16(12)
+	spi.ProtocolVersion = bitn.AsUInt8(8)
 	spi.EncryptedPacket = bitn.AsBool()
-	spi.EncryptionAlgorithm = bitn.AsInt(6)
-	// bitslice off 33 bits and return the 90k clock as float64
+	spi.EncryptionAlgorithm = bitn.AsUInt8(6)
 	spi.PtsAdjustment = bitn.As90k(33)
 	spi.CwIndex = bitn.AsHex(8)
 	spi.Tier = bitn.AsHex(12)
-	spi.SpliceCommandLength = bitn.AsInt(12)
-	spi.SpliceCommandType = bitn.AsInt(8)
+	spi.SpliceCommandLength = bitn.AsUInt16(12)
+	spi.SpliceCommandType = bitn.AsUInt8(8)
 }
 
 func main() {

@@ -3,8 +3,7 @@
 
 ### Bitslicer for bytes 
 ```go
-$ go doc -all -u  gobit.Bitn
-
+ go doc -all -u  gobit.Bitn
 package gobit // import "github.com/futzu/gobit"
 
 type Bitn struct {
@@ -28,8 +27,17 @@ func (b *Bitn) AsFloat(bitcount uint) float64
 func (b *Bitn) AsHex(bitcount uint) string
     AsHex slices bitcount of bits and returns as hex string
 
-func (b *Bitn) AsInt(bitcount uint) uint64
-    AsInt is a wrapper for Chunk
+func (b *Bitn) AsUInt16(bitcount uint) uint16
+    AsUInt16 is a wrapper for Chunk
+
+func (b *Bitn) AsUInt32(bitcount uint) uint32
+    AsUInt32 is a wrapper for Chunk
+
+func (b *Bitn) AsUInt64(bitcount uint) uint64
+    AsUInt64 is a wrapper for Chunk
+
+func (b *Bitn) AsUInt8(bitcount uint) uint8
+    AsUInt8 is a wrapper for Chunk
 
 func (b *Bitn) Chunk(bitcount uint) uint64
     Chunk slices bitcount of bits and returns it as a uint64
@@ -39,4 +47,6 @@ func (b *Bitn) Forward(bitcount uint)
 
 func (b *Bitn) Load(bites []byte)
     Load raw bytes and convert to bits
+
+
 ```

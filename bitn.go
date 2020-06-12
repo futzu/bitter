@@ -31,10 +31,25 @@ func (b *Bitn) Chunk(bitcount uint) uint64 {
 	return j.Uint64()
 }
 
-// AsInt is a wrapper for Chunk
-func (b *Bitn) AsInt(bitcount uint) uint64 {
-	asint := b.Chunk(bitcount)
-	return asint
+// AsUInt64 is a wrapper for Chunk
+func (b *Bitn) AsUInt64(bitcount uint) uint64 {
+	asuint64 := b.Chunk(bitcount)
+	return asuint64
+}
+// AsUInt8 is a wrapper for Chunk
+func (b *Bitn) AsUInt8(bitcount uint) uint8 {
+	asuint8 := uint8(b.Chunk(bitcount))
+	return asuint8
+}
+// AsUInt16 is a wrapper for Chunk
+func (b *Bitn) AsUInt16(bitcount uint) uint16 {
+	asuint16 := uint16(b.Chunk(bitcount))
+	return asuint16
+}
+// AsUInt32 is a wrapper for Chunk
+func (b *Bitn) AsUInt32(bitcount uint) uint32 {
+	asuint32 := uint32(b.Chunk(bitcount))
+	return asuint32
 }
 
 // AsBool slices 1 bit and returns true for 1 , false for 0

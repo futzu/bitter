@@ -1,6 +1,5 @@
 # bitter
 [![Go Report Card](https://goreportcard.com/badge/github.com/futzu/bitter)](https://goreportcard.com/report/github.com/futzu/bitter)
-
 ### Bitslicer for bytes 
 ```go
 

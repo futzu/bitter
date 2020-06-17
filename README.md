@@ -4,9 +4,12 @@
 ### Bitslicer for bytes 
 ```go
 
-$ go doc -all -u  bitter.Bitn
+$ go doc -all -u bitter
 
-package gobit // import "github.com/futzu/bitter"
+package bitter // import "github.com/futzu/bitter"
+
+
+TYPES
 
 type Bitn struct {
         idx  uint
@@ -49,6 +52,7 @@ func (b *Bitn) Forward(bitcount uint)
 
 func (b *Bitn) Load(bites []byte)
     Load raw bytes and convert to bits
+
 
 
 ```

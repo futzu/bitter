@@ -1,4 +1,4 @@
-package gobit
+package bitter
 
 import (
 	"encoding/hex"
@@ -36,16 +36,19 @@ func (b *Bitn) AsUInt64(bitcount uint) uint64 {
 	asuint64 := b.Chunk(bitcount)
 	return asuint64
 }
+
 // AsUInt8 is a  uint8 wrapper for Chunk
 func (b *Bitn) AsUInt8(bitcount uint) uint8 {
 	asuint8 := uint8(b.Chunk(bitcount))
 	return asuint8
 }
+
 // AsUInt16 is a uint16 wrapper for Chunk
 func (b *Bitn) AsUInt16(bitcount uint) uint16 {
 	asuint16 := uint16(b.Chunk(bitcount))
 	return asuint16
 }
+
 // AsUInt32 is a uint32 wrapper for Chunk
 func (b *Bitn) AsUInt32(bitcount uint) uint32 {
 	asuint32 := uint32(b.Chunk(bitcount))

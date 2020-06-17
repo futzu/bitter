@@ -3,7 +3,6 @@ package bitter
 import (
 	"encoding/hex"
 	"fmt"
-	"log"
 	"math/big"
 )
 
@@ -27,21 +26,21 @@ func (b *Bitn) Chunk(bitcount uint) uint64 {
 	d := b.idx + bitcount
 	j.SetString(b.bits[b.idx:d], 2)
 	b.idx = d
-	//fmt.Printf("bitidx: %v\n", b.idx)
 	return j.Uint64()
 }
 
 // AsUInt64 is a wrapper for Chunk
 func (b *Bitn) AsUInt64(bitcount uint) uint64 {
 	return b.Chunk(bitcount)
+
 }
 
 // AsBool slices 1 bit and returns true for 1 , false for 0
 func (b *Bitn) AsBool() bool {
 	var bitcount uint
 	bitcount = 1
-	boo := (b.Chunk(bitcount) == 1)
-	return boo
+	return (b.Chunk(bitcount) == 1)
+
 }
 
 // AsFloat slices bitcount of bits and returns as float64
@@ -50,10 +49,10 @@ func (b *Bitn) AsFloat(bitcount uint) float64 {
 	return asfloat
 }
 
-// As90k is AsFloat / 90000.00
+// As90k is AsFloat / 90000.00 rounded to six decimal places.
 func (b *Bitn) As90k(bitcount uint) float64 {
 	as90k := b.AsFloat(bitcount) / 90000.00
-	return as90k
+	return float64(uint64(as90k*1000000)) / 1000000
 }
 
 // AsHex slices bitcount of bits and returns as hex string
@@ -67,7 +66,7 @@ func (b *Bitn) AsDeHex(bitcount uint) []byte {
 	ashex := fmt.Sprintf("%x", b.Chunk(bitcount))
 	asdehex, err := hex.DecodeString(ashex)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	return asdehex
 }

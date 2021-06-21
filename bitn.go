@@ -29,6 +29,12 @@ func (b *Bitn) Chunk(bitcount uint) uint64 {
 	return j.Uint64()
 }
 
+// Chunk slices bitcount of bits and returns it as a uint64
+func (b *Bitn) AsUInt8(bitcount uint) uint8 {
+	return uint8(b.Chunk(bitcount))
+
+}
+
 // AsUInt64 is a wrapper for Chunk
 func (b *Bitn) AsUInt64(bitcount uint) uint64 {
 	return b.Chunk(bitcount)
@@ -64,6 +70,7 @@ func (b *Bitn) AsHex(bitcount uint) string {
 // AsDeHex slices bitcount of bits and returns as hex string
 func (b *Bitn) AsDeHex(bitcount uint) []byte {
 	ashex := fmt.Sprintf("%x", b.Chunk(bitcount))
+	//fmt.Printf("%v \n",b.Chunk(bitcount))
 	asdehex, err := hex.DecodeString(ashex)
 	if err != nil {
 		panic(err)

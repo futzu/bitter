@@ -1,7 +1,7 @@
 package bitter
 
 import (
-	"encoding/hex"
+	//"encoding/hex"
 	"fmt"
 	"math/big"
 )
@@ -21,23 +21,25 @@ func (b *Bitn) Load(bites []byte) {
 }
 
 // Chunk slices bitcount of bits and returns it as a uint64
-func (b *Bitn) Chunk(bitcount uint) uint64 {
+func (b *Bitn) Chunk(bitcount uint) *big.Int {
 	j := new(big.Int)
 	d := b.idx + bitcount
 	j.SetString(b.bits[b.idx:d], 2)
 	b.idx = d
-	return j.Uint64()
+	return j
 }
 
 // Chunk slices bitcount of bits and returns it as a uint64
 func (b *Bitn) AsUInt8(bitcount uint) uint8 {
-	return uint8(b.Chunk(bitcount))
+	j := b.AsUInt64(bitcount)
+	return uint8(j)
 
 }
 
 // AsUInt64 is a wrapper for Chunk
 func (b *Bitn) AsUInt64(bitcount uint) uint64 {
-	return b.Chunk(bitcount)
+	j := b.Chunk(bitcount)
+	return j.Uint64()
 
 }
 
@@ -45,14 +47,14 @@ func (b *Bitn) AsUInt64(bitcount uint) uint64 {
 func (b *Bitn) AsBool() bool {
 	var bitcount uint
 	bitcount = 1
-	return (b.Chunk(bitcount) == 1)
-
+	j := b.AsUInt64(bitcount)
+	return j == 1
 }
 
 // AsFloat slices bitcount of bits and returns as float64
 func (b *Bitn) AsFloat(bitcount uint) float64 {
-	asfloat := float64(b.Chunk(bitcount))
-	return asfloat
+	j := b.AsUInt64(bitcount)
+	return float64(j)
 }
 
 // As90k is AsFloat / 90000.00 rounded to six decimal places.
@@ -63,19 +65,17 @@ func (b *Bitn) As90k(bitcount uint) float64 {
 
 // AsHex slices bitcount of bits and returns as hex string
 func (b *Bitn) AsHex(bitcount uint) string {
-	ashex := fmt.Sprintf("%#x", b.Chunk(bitcount))
+	j := b.AsUInt64(bitcount)
+	ashex := fmt.Sprintf("%#x", j)
 	return ashex
 }
 
 // AsDeHex slices bitcount of bits and returns as hex string
-func (b *Bitn) AsDeHex(bitcount uint) []byte {
-	ashex := fmt.Sprintf("%x", b.Chunk(bitcount))
+func (b *Bitn) AsByteString(bitcount uint) string {
+	j := b.Chunk(bitcount)
+	//as := fmt.Sprintf("%c", j.Bytes())
 	//fmt.Printf("%v \n",b.Chunk(bitcount))
-	asdehex, err := hex.DecodeString(ashex)
-	if err != nil {
-		panic(err)
-	}
-	return asdehex
+	return string(j.Bytes())
 }
 
 // Forward advances b.idx by bitcount

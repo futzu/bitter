@@ -1,7 +1,7 @@
 # bitter     [![Go Report Card](https://goreportcard.com/badge/github.com/FUTZU/bitter)](https://goreportcard.com/report/github.com/FUTZU/bitter)
 
 ### Bitslicer for bytes 
-```js
+```go
 
 $ package bitter // import "github.com/futzu/bitter"
 
